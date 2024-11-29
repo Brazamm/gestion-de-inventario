@@ -20,7 +20,7 @@ class Producto {
     }
 }
 
-// Clase Orden para las órdenes de clientes
+// órdenes de clientes
 class Orden {
     String cliente;
     String producto;
@@ -40,24 +40,24 @@ class Orden {
     }
 }
 
-// Clase principal del sistema
+// Clase principal 
 public class SistemaGestion {
     // Inventario como arreglo
     Producto[] inventario;
 
-    // Lista dinámica de órdenes
+   
     ArrayList<Orden> listaOrdenes = new ArrayList<>();
 
-    // Pila para almacenamiento físico
+    
     ArrayDeque<String> pilaAlmacen = new ArrayDeque<>();
 
-    // Cola para órdenes regulares
+  
     LinkedList<Orden> colaOrdenes = new LinkedList<>();
 
-    // Cola priorizada para órdenes urgentes
+    
     PriorityQueue<Orden> colaUrgente = new PriorityQueue<>(Comparator.comparing(o -> !o.urgente));
 
-    // Inicialización del inventario
+    // Inicialización inventario
     public void inicializarInventario() {
         inventario = new Producto[]{
                 new Producto("Producto A", 50),
@@ -98,7 +98,7 @@ public class SistemaGestion {
         System.out.println("Orden agregada: " + orden);
     }
 
-    // Modificar una orden
+    // Editar una orden
     public void modificarOrden(int indice, String cliente, String producto, int cantidad, boolean urgente) {
         if (indice >= 0 && indice < listaOrdenes.size()) {
             Orden orden = listaOrdenes.get(indice);
@@ -124,7 +124,7 @@ public class SistemaGestion {
         }
     }
 
-    // Procesar órdenes regulares
+   
     public void procesarOrdenes() {
         if (!colaOrdenes.isEmpty()) {
             Orden orden = colaOrdenes.poll();
@@ -134,7 +134,6 @@ public class SistemaGestion {
         }
     }
 
-    // Procesar órdenes urgentes
     public void procesarOrdenesUrgentes() {
         if (!colaUrgente.isEmpty()) {
             Orden orden = colaUrgente.poll();
@@ -144,7 +143,7 @@ public class SistemaGestion {
         }
     }
 
-    // Almacén físico
+  
     public void apilarProducto(String producto) {
         pilaAlmacen.push(producto);
         System.out.println("Producto apilado: " + producto);
@@ -164,7 +163,7 @@ public class SistemaGestion {
         Scanner scanner = new Scanner(System.in);
         int opcion;
         do {
-            System.out.println("\n=== Menú de Gestión ===");
+            System.out.println("\n--- Menú de Gestión ---");
             System.out.println("1. Mostrar inventario");
             System.out.println("2. Actualizar inventario");
             System.out.println("3. Agregar orden");
@@ -177,8 +176,7 @@ public class SistemaGestion {
             System.out.println("10. Salir");
             System.out.print("Seleccione una opción: ");
             opcion = scanner.nextInt();
-            scanner.nextLine(); // Limpiar buffer
-
+            scanner.nextLine(); 
             switch (opcion) {
                 case 1:
                     mostrarInventario();
